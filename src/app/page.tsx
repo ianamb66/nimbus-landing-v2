@@ -736,6 +736,39 @@ function SectionPlaceholder({
 }
 
 function Contacto() {
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
+  const [contact, setContact] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [error, setError] = useState<string | null>(null);
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus('sending');
+    setError(null);
+
+    try {
+      const payload = { name, company, contact, message, source: 'contacto' };
+      const res = await fetch('/api/sheets-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) throw new Error(data?.error || 'No se pudo enviar');
+
+      setStatus('sent');
+      setName('');
+      setCompany('');
+      setContact('');
+      setMessage('');
+    } catch (e: unknown) {
+      setStatus('error');
+      setError(e instanceof Error ? e.message : 'Error');
+    }
+  }
+
   return (
     <div className="pt-24 bg-[color:var(--nimbus-blue)] min-h-screen relative">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -749,13 +782,16 @@ function Contacto() {
 
         <div className="flex flex-col md:flex-row gap-16 mt-16">
           <div className="w-full md:w-1/2 reveal-left delay-100">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={onSubmit}>
               <div>
                 <label className="block text-sm font-bold uppercase tracking-widest text-gray-400 mb-2">Nombre Completo</label>
                 <input
                   type="text"
                   className="w-full bg-black border border-gray-800 p-4 text-white focus:outline-none focus:border-[color:var(--nimbus-red)] transition-colors"
                   placeholder="Tu nombre"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -764,6 +800,19 @@ function Contacto() {
                   type="text"
                   className="w-full bg-black border border-gray-800 p-4 text-white focus:outline-none focus:border-[color:var(--nimbus-red)] transition-colors"
                   placeholder="Nombre de la empresa"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-widest text-gray-400 mb-2">Número o correo de contacto</label>
+                <input
+                  type="text"
+                  className="w-full bg-black border border-gray-800 p-4 text-white focus:outline-none focus:border-[color:var(--nimbus-red)] transition-colors"
+                  placeholder="WhatsApp o email"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -772,9 +821,29 @@ function Contacto() {
                   rows={4}
                   className="w-full bg-black border border-gray-800 p-4 text-white focus:outline-none focus:border-[color:var(--nimbus-red)] transition-colors"
                   placeholder="Cuéntanos sobre tu proyecto..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
                 ></textarea>
               </div>
-              <ButtonPrimary className="w-full">Enviar Mensaje</ButtonPrimary>
+              <button
+                className={`group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white uppercase tracking-wider bg-[color:var(--nimbus-red)] overflow-hidden transition-all hover:scale-105 w-full ${
+                  status === 'sending' ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+                type="submit"
+                disabled={status === 'sending'}
+              >
+                <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                <span className="relative z-10 flex items-center gap-2">{status === 'sending' ? 'Enviando…' : 'Enviar Mensaje'}</span>
+                <div className="absolute inset-0 border-2 border-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              </button>
+
+              {status === 'sent' && <p className="text-green-300 font-bold">Listo. Te contactamos en breve.</p>}
+              {status === 'error' && <p className="text-red-300 font-bold">Error: {error}</p>}
+
+              <p className="text-white/50 text-xs font-bold">
+                Al enviar aceptas que te contactemos por WhatsApp/correo para dar seguimiento a tu solicitud.
+              </p>
             </form>
           </div>
 
@@ -796,13 +865,13 @@ function Contacto() {
                     rel="noreferrer"
                     className="hover:text-[color:var(--nimbus-red)] transition-colors"
                   >
-                    +52 123 456 7890 (WhatsApp)
+                    +52 55 3523 9662 (WhatsApp)
                   </a>
                 </li>
                 <li className="flex items-center gap-4 text-lg hover:translate-x-2 transition-transform">
                   <Mail className="text-[color:var(--nimbus-red)]" />
-                  <a href="mailto:contacto@nimbus.agency" className="hover:text-[color:var(--nimbus-red)] transition-colors">
-                    contacto@nimbus.agency
+                  <a href="mailto:contacto@nimbus.mx" className="hover:text-[color:var(--nimbus-red)] transition-colors">
+                    contacto@nimbus.mx
                   </a>
                 </li>
                 <li className="flex items-start gap-4 text-lg hover:translate-x-2 transition-transform">
