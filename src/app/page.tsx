@@ -281,7 +281,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
               <ButtonPrimary onClick={() => setView('servicios')}>
                 Conocer Servicios <ArrowRight size={20} />
               </ButtonPrimary>
-              <ButtonOutline onClick={() => window.open('https://wa.me/5235239662', '_blank')}>
+              <ButtonOutline onClick={() => window.open('https://wa.me/525535239662', '_blank')}>
                 Contactar por WhatsApp
               </ButtonOutline>
             </div>
@@ -478,7 +478,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
           <div className="flex flex-col sm:flex-row gap-6 justify-center reveal-up delay-200">
             <ButtonOutline className="bg-black border-black hover:bg-transparent hover:border-black hover:text-black">Contactar Ahora</ButtonOutline>
             <button
-              onClick={() => window.open('https://wa.me/5235239662', '_blank')}
+              onClick={() => window.open('https://wa.me/525535239662', '_blank')}
               className="flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-white hover:text-black transition-colors underline decoration-2 underline-offset-8"
               type="button"
             >
@@ -776,7 +776,7 @@ function Contacto() {
                 <li className="flex items-center gap-4 text-lg hover:translate-x-2 transition-transform">
                   <MessageCircle className="text-[color:var(--nimbus-red)]" />
                   <a
-                    href="https://wa.me/5235239662"
+                    href="https://wa.me/525535239662"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-[color:var(--nimbus-red)] transition-colors"
@@ -1022,7 +1022,7 @@ export default function Page() {
       </footer>
 
       <a
-        href="https://wa.me/5235239662"
+        href="https://wa.me/525535239662"
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg shadow-black/50 hover:scale-110 hover:bg-[#1ebe57] transition-all flex items-center justify-center group"
