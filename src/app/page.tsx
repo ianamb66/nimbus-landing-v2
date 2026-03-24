@@ -257,6 +257,9 @@ function Home({ setView }: { setView: (id: string) => void }) {
             src={ASSETS.periodicos.texturaFondo}
             alt=""
             className="w-full h-full object-cover object-center transform scale-110"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -264,6 +267,8 @@ function Home({ setView }: { setView: (id: string) => void }) {
           src={ASSETS.manchas.roja1}
           alt=""
           className="absolute z-0 right-[-10%] top-[20%] w-[60%] opacity-80 pointer-events-none mix-blend-screen reveal-scale delay-300"
+          loading="lazy"
+          decoding="async"
         />
 
         <div className="container mx-auto px-6 relative z-10">
@@ -278,6 +283,8 @@ function Home({ setView }: { setView: (id: string) => void }) {
                   src={ASSETS.manchas.roja2}
                   alt=""
                   className="absolute -top-4 -left-10 w-32 h-32 opacity-50 mix-blend-multiply pointer-events-none"
+                  loading="lazy"
+                  decoding="async"
                 />
               </span>
             </h1>
@@ -302,6 +309,8 @@ function Home({ setView }: { setView: (id: string) => void }) {
             alt=""
             className="w-full h-16 md:h-32 object-cover object-top opacity-100"
             style={{ filter: 'brightness(0.04)' }}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </section>
@@ -731,7 +740,7 @@ function SectionPlaceholder({
                 className="px-8 py-4 bg-black border-2 border-gray-700 text-xl font-stencil hover:bg-[color:var(--nimbus-red)] hover:border-[color:var(--nimbus-red)] transition-colors cursor-pointer flex items-center gap-2 reveal-scale"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ASSETS.papeles.pedazo1} alt="" className="w-6 h-6 object-contain opacity-50" />
+                <img src={ASSETS.papeles.pedazo1} alt="" className="w-6 h-6 object-contain opacity-50 rotate-45" loading="lazy" decoding="async" />
                 {sector}
               </div>
             ))}
