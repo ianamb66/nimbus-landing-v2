@@ -1,0 +1,42 @@
+[
+  {
+    "id": "proyecto-1",
+    "title": "PROYECTO CORPORATIVO 1",
+    "subtitle": "Eventos, Producción Audiovisual, PR",
+    "cover": "/assets/fotos/proyecto-1.png",
+    "what": "Activación y cobertura para reforzar posicionamiento de marca.",
+    "challenges": ["Tiempo de producción limitado", "Necesidad de narrativa clara para medios"],
+    "solutions": ["Plan de producción por bloques y entregables", "Guión de mensajes clave + assets para prensa"],
+    "results": ["Entrega en tiempo", "Mejor consistencia de comunicación"]
+  },
+  {
+    "id": "proyecto-2",
+    "title": "PROYECTO CORPORATIVO 2",
+    "subtitle": "Eventos, Producción Audiovisual, PR",
+    "cover": "/assets/fotos/proyecto-2.jpg",
+    "what": "Campaña integral con activación y contenido para redes.",
+    "challenges": ["Aprobaciones múltiples", "Cambios de último minuto"],
+    "solutions": ["Ruta de aprobación con tiempos y responsables", "Plantillas de producción para iterar rápido"],
+    "results": ["Flujo de trabajo ordenado", "Contenido alineado a objetivos"]
+  },
+  {
+    "id": "proyecto-3",
+    "title": "PROYECTO CORPORATIVO 3",
+    "subtitle": "Eventos, Producción Audiovisual, PR",
+    "cover": "/assets/fotos/proyecto-3.jpg",
+    "what": "Relanzamiento con enfoque en experiencia y medios.",
+    "challenges": ["Coordinación de proveedores", "Timing de prensa"],
+    "solutions": ["Cronograma único compartido", "Paquete de prensa y vocería"],
+    "results": ["Ejecución sin fricción", "Mayor claridad en cobertura"]
+  },
+  {
+    "id": "proyecto-4",
+    "title": "PROYECTO CORPORATIVO 4",
+    "subtitle": "Eventos, Producción Audiovisual, PR",
+    "cover": "/assets/fotos/proyecto-4.jpg",
+    "what": "Producción de evento + amplificación digital.",
+    "challenges": ["Optimizar recursos", "Asegurar consistencia visual"],
+    "solutions": ["Reutilización de piezas clave", "Sistema de diseño para assets"],
+    "results": ["Menos retrabajo", "Entrega coherente"]
+  }
+]

@@ -678,15 +678,38 @@ function Metodologia() {
   );
 }
 
+type ProjectCase = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  cover: string;
+  what?: string;
+  challenges?: string[];
+  solutions?: string[];
+  results?: string[];
+};
+
 function SectionPlaceholder({
   title,
   bgClass = 'bg-black',
   viewName,
+  onOpenProject,
 }: {
   title: string;
   bgClass?: string;
   viewName: string;
+  onOpenProject?: (p: ProjectCase) => void;
 }) {
+  const [projects, setProjects] = useState<ProjectCase[] | null>(null);
+
+  useEffect(() => {
+    if (viewName !== 'experiencia') return;
+    fetch('/content/projects/projects.json')
+      .then((r) => r.json())
+      .then((data) => setProjects(Array.isArray(data) ? data : []))
+      .catch(() => setProjects([]));
+  }, [viewName]);
+
   return (
     <div className={`pt-32 pb-24 min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden ${bgClass}`}>
       <div className="absolute inset-0 bg-halftone opacity-20"></div>
@@ -722,14 +745,46 @@ function SectionPlaceholder({
 
         {viewName === 'experiencia' && (
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-[color:var(--nimbus-blue)] p-6 border border-gray-800 hover:border-[color:var(--nimbus-red)] transition-colors group reveal-up">
+            {(projects ?? [
+              {
+                id: 'proyecto-1',
+                title: 'PROYECTO CORPORATIVO 1',
+                subtitle: 'Eventos, Producción Audiovisual, PR',
+                cover: ASSETS.fotos.proyecto1,
+              },
+              {
+                id: 'proyecto-2',
+                title: 'PROYECTO CORPORATIVO 2',
+                subtitle: 'Eventos, Producción Audiovisual, PR',
+                cover: ASSETS.fotos.proyecto2,
+              },
+              {
+                id: 'proyecto-3',
+                title: 'PROYECTO CORPORATIVO 3',
+                subtitle: 'Eventos, Producción Audiovisual, PR',
+                cover: ASSETS.fotos.proyecto3,
+              },
+              {
+                id: 'proyecto-4',
+                title: 'PROYECTO CORPORATIVO 4',
+                subtitle: 'Eventos, Producción Audiovisual, PR',
+                cover: ASSETS.fotos.proyecto4,
+              },
+            ]).map((p, idx) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => onOpenProject?.(p)}
+                className="text-left bg-[color:var(--nimbus-blue)] p-6 border border-gray-800 hover:border-[color:var(--nimbus-red)] transition-colors group reveal-up"
+              >
                 <div className="h-64 bg-gray-900 mb-6 relative overflow-hidden flex items-center justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={ASSETS.fotos[`proyecto${i}` as keyof typeof ASSETS.fotos]}
-                    alt={''}
+                    src={p.cover}
+                    alt={p.title}
                     className="absolute inset-0 w-full h-full object-cover img-grunge-light group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-halftone opacity-30"></div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -737,14 +792,16 @@ function SectionPlaceholder({
                     src={ASSETS.periodicos.recorteSuelto}
                     alt=""
                     className="absolute bottom-[-10%] right-[-10%] w-1/2 opacity-20 mix-blend-screen"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-                <h3 className="font-stencil text-3xl mb-2 text-white">PROYECTO CORPORATIVO {i}</h3>
-                <p className="text-gray-400 text-sm mb-4">Eventos, Producción Audiovisual, PR</p>
+                <h3 className="font-stencil text-3xl mb-2 text-white">{p.title || `PROYECTO ${idx + 1}`}</h3>
+                <p className="text-gray-400 text-sm mb-4">{p.subtitle || 'Eventos, Producción Audiovisual, PR'}</p>
                 <span className="text-[color:var(--nimbus-red)] font-bold text-sm uppercase tracking-wider hover:underline cursor-pointer flex items-center gap-1">
                   Ver Caso <ArrowRight size={14} />
                 </span>
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -955,6 +1012,7 @@ export default function Page() {
   const [currentView, setCurrentView] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openProject, setOpenProject] = useState<ProjectCase | null>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -1009,7 +1067,7 @@ export default function Page() {
       case 'contacto':
         return <Contacto />;
       case 'experiencia':
-        return <SectionPlaceholder title="Experiencia" viewName="experiencia" />;
+        return <SectionPlaceholder title="Experiencia" viewName="experiencia" onOpenProject={setOpenProject} />;
       case 'sectores':
         return <SectionPlaceholder title="Sectores" bgClass="bg-[color:var(--nimbus-blue)]" viewName="sectores" />;
       case 'nosotros':
@@ -1022,6 +1080,98 @@ export default function Page() {
   return (
     <>
       <style>{globalStyles}</style>
+
+      {openProject && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Caso de proyecto"
+          onClick={() => setOpenProject(null)}
+        >
+          <div
+            className="w-full max-w-3xl bg-[color:var(--nimbus-blue)] border border-gray-800 shadow-2xl relative overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-6 p-6 border-b border-gray-800">
+              <div>
+                <h3 className="font-stencil text-3xl md:text-4xl text-white leading-tight">{openProject.title}</h3>
+                {openProject.subtitle && <p className="text-gray-300 mt-2">{openProject.subtitle}</p>}
+              </div>
+              <button
+                type="button"
+                className="text-white/70 hover:text-white font-bold"
+                onClick={() => setOpenProject(null)}
+                aria-label="Cerrar"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="max-h-[70vh] overflow-auto">
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="relative h-56 md:h-full min-h-56 bg-black/30 border border-gray-800 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={openProject.cover}
+                    alt={openProject.title}
+                    className="absolute inset-0 w-full h-full object-cover img-grunge-light"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-halftone opacity-20" />
+                </div>
+
+                <div className="space-y-5">
+                  {openProject.what && (
+                    <div>
+                      <h4 className="font-stencil text-xl text-white mb-2">QUÉ HICIMOS</h4>
+                      <p className="text-gray-300 leading-relaxed">{openProject.what}</p>
+                    </div>
+                  )}
+
+                  {openProject.challenges?.length ? (
+                    <div>
+                      <h4 className="font-stencil text-xl text-white mb-2">RETOS</h4>
+                      <ul className="list-disc pl-5 text-gray-300 space-y-1">
+                        {openProject.challenges.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {openProject.solutions?.length ? (
+                    <div>
+                      <h4 className="font-stencil text-xl text-white mb-2">CÓMO LO SOLUCIONAMOS</h4>
+                      <ul className="list-disc pl-5 text-gray-300 space-y-1">
+                        {openProject.solutions.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {openProject.results?.length ? (
+                    <div>
+                      <h4 className="font-stencil text-xl text-white mb-2">RESULTADOS</h4>
+                      <ul className="list-disc pl-5 text-gray-300 space-y-1">
+                        {openProject.results.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-gray-800 flex justify-end">
+              <ButtonPrimary onClick={() => setOpenProject(null)}>Cerrar</ButtonPrimary>
+            </div>
+          </div>
+        </div>
+      )}
 
       <header
         className={`fixed w-full z-50 transition-all duration-300 ${
