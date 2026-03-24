@@ -454,12 +454,10 @@ function Home({ setView }: { setView: (id: string) => void }) {
             {['DIAGNÓSTICO', 'ESTRATEGIA', 'PRODUCCIÓN', 'ACTIVACIÓN', 'OPTIMIZACIÓN'].map((step, idx) => (
               <React.Fragment key={step}>
                 <div className="relative bg-[color:var(--nimbus-blue)] border-2 border-[color:var(--nimbus-red)] w-full md:w-48 h-32 flex items-center justify-center group hover:bg-[color:var(--nimbus-red)] transition-colors reveal-up">
-                  <span className="font-stencil text-2xl text-white z-10 relative">
-                    {step}
-                    <span className="absolute -top-6 -left-4 text-6xl text-gray-800 opacity-50 group-hover:text-black transition-colors">
-                      0{idx + 1}
-                    </span>
+                  <span className="absolute top-2 left-2 font-stencil text-4xl md:text-6xl text-gray-800/50 group-hover:text-black/60 transition-colors pointer-events-none select-none">
+                    0{idx + 1}
                   </span>
+                  <span className="font-stencil text-2xl text-white z-10 relative">{step}</span>
                 </div>
                 {idx < 4 && (
                   <div className="hidden md:flex items-center justify-center px-2 text-[color:var(--nimbus-red)] reveal-scale">
