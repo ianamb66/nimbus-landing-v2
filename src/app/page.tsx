@@ -51,6 +51,12 @@ const globalStyles = `
   
   .img-grunge-light {
     filter: grayscale(100%) contrast(120%);
+    transition: filter 250ms ease, opacity 250ms ease;
+  }
+
+  /* En tarjetas de experiencia, al hover queremos ver la imagen a color, sin filtros */
+  .case-card:hover .img-grunge-light {
+    filter: none;
   }
 
   .hover-glitch:hover {
@@ -775,7 +781,7 @@ function SectionPlaceholder({
                 key={p.id}
                 type="button"
                 onClick={() => onOpenProject?.(p)}
-                className="text-left bg-[color:var(--nimbus-blue)] p-6 border border-gray-800 hover:border-[color:var(--nimbus-red)] transition-colors group reveal-up"
+                className="case-card text-left bg-[color:var(--nimbus-blue)] p-6 border border-gray-800 hover:border-[color:var(--nimbus-red)] transition-colors group reveal-up"
               >
                 <div className="h-64 bg-gray-900 mb-6 relative overflow-hidden flex items-center justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -786,15 +792,7 @@ function SectionPlaceholder({
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-halftone opacity-30"></div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={ASSETS.periodicos.recorteSuelto}
-                    alt=""
-                    className="absolute bottom-[-10%] right-[-10%] w-1/2 opacity-20 mix-blend-screen"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  {/* Sin texturas/halftone en esta tarjeta; solo la foto */}
                 </div>
                 <h3 className="font-stencil text-3xl mb-2 text-white">{p.title || `PROYECTO ${idx + 1}`}</h3>
                 <p className="text-gray-400 text-sm mb-4">{p.subtitle || 'Eventos, Producción Audiovisual, PR'}</p>
@@ -1096,11 +1094,10 @@ export default function Page() {
                   <img
                     src={openProject.cover}
                     alt={openProject.title}
-                    className="absolute inset-0 w-full h-full object-cover img-grunge-light"
+                    className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-halftone opacity-20" />
                 </div>
 
                 <div className="space-y-5">
