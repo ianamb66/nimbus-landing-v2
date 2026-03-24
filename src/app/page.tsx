@@ -15,8 +15,6 @@ import {
 
 // --- CONFIGURACIÓN DE ESTILOS GLOBALES Y FUENTES ---
 const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap');
-
   :root {
     --nimbus-red: #E3241B;
     --nimbus-blue: #131F2F;
@@ -25,14 +23,14 @@ const globalStyles = `
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     background-color: var(--nimbus-black);
     color: var(--nimbus-white);
     overflow-x: hidden;
   }
 
   .font-stencil {
-    font-family: 'Anton', sans-serif;
+    font-family: var(--font-anton), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
@@ -117,7 +115,7 @@ const globalStyles = `
 // --- RUTAS DE ARCHIVOS (ASSETS Y PLACEHOLDERS) ---
 const ASSETS = {
   logos: {
-    principal: '/assets/logos/nimbus-logo.png',
+    principal: '/assets/logos/nimbus-logo.webp',
   },
   manchas: {
     roja1: '/assets/manchas-grunge/mancha-roja-01.png',
@@ -129,14 +127,14 @@ const ASSETS = {
     decorativa: '/assets/manchas-grunge/mancha-decorativa.png',
   },
   papeles: {
-    bordeSuperior: '/assets/papeles-cortados/borde-superior.png',
-    bordeInferior: '/assets/papeles-cortados/borde-inferior.png',
-    pedazo1: '/assets/papeles-cortados/pedazo-01.png',
+    bordeSuperior: '/assets/papeles-cortados/borde-superior.webp',
+    bordeInferior: '/assets/papeles-cortados/borde-inferior.webp',
+    pedazo1: '/assets/papeles-cortados/pedazo-01.webp',
   },
   periodicos: {
-    texturaFondo: '/assets/recortes-periodicos/textura-01.png',
-    texturaOscura: '/assets/recortes-periodicos/textura-02.png',
-    recorteSuelto: '/assets/recortes-periodicos/recorte-suelto.png',
+    texturaFondo: '/assets/recortes-periodicos/textura-01.webp',
+    texturaOscura: '/assets/recortes-periodicos/textura-02.webp',
+    recorteSuelto: '/assets/recortes-periodicos/recorte-suelto.webp',
   },
   fotos: {
     marketing: '/assets/fotos/marketing.jpg',
