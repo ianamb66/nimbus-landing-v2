@@ -580,8 +580,14 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                 }`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={srv.foto} alt={srv.title} className="absolute inset-0 w-full h-full object-cover img-grunge opacity-50" />
-                <div className="absolute inset-0 bg-halftone opacity-40"></div>
+                <img
+                  src={srv.foto}
+                  alt={srv.title}
+                  className="absolute inset-0 w-full h-full object-cover img-grunge opacity-70 md:opacity-50"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-halftone opacity-25 md:opacity-40"></div>
 
                 {/* Placeholder por servicio (PNG reemplazable) */}
                 <img
@@ -592,7 +598,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={srv.mancha} alt="" className="absolute w-3/4 opacity-80 mix-blend-screen" />
-                <h3 className="relative z-10 text-5xl md:text-7xl font-stencil text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-40 transform -rotate-6 whitespace-nowrap">
+                <h3 className="relative z-10 px-4 text-center text-3xl sm:text-5xl md:text-7xl font-stencil text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-50 transform -rotate-6 whitespace-normal leading-tight max-w-[95%]">
                   {srv.title}
                 </h3>
                 <div className="absolute top-4 left-4 font-stencil text-[color:var(--nimbus-red)] text-2xl px-2 py-1 bg-black/50 backdrop-blur-sm">
