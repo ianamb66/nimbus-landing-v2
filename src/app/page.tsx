@@ -664,8 +664,23 @@ function SectionPlaceholder({
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl opacity-10 mix-blend-screen pointer-events-none reveal-scale"
       />
       <div className="relative z-10 text-center px-6 w-full max-w-6xl mx-auto">
-        <h1 className="text-6xl md:text-8xl font-stencil text-[color:var(--nimbus-red)] mb-6 uppercase tracking-wider reveal-down">{title}</h1>
-        {viewName !== 'sectores' && (
+        <h1
+          className={`text-6xl md:text-8xl font-stencil mb-6 uppercase tracking-wider reveal-down ${
+            viewName === 'nosotros' ? 'text-white' : 'text-[color:var(--nimbus-red)]'
+          }`}
+        >
+          {title}
+        </h1>
+
+        {viewName === 'nosotros' && (
+          <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto mb-10 reveal-up delay-100 leading-relaxed">
+            En Nimbus llevamos 15 años creando estrategias que conectan marcas con personas a través de ideas sólidas, ejecución precisa y visión comercial.
+            Somos expertos en medios ATL, campañas BTL, marketing, relaciones públicas, producción y activaciones que generan presencia, recordación e impacto real.
+            Diseñamos soluciones integrales para cada proyecto, desde la planeación hasta la implementación, combinando creatividad, experiencia y un enfoque estratégico que responde a las necesidades de cada cliente.
+          </p>
+        )}
+
+        {viewName !== 'sectores' && viewName !== 'nosotros' && (
           <p className="text-2xl text-gray-300 max-w-2xl mx-auto mb-10 reveal-up delay-100">
             Sección en desarrollo. Explorando la estética visual y narrativa de Nimbus para el área de {title.toLowerCase()}.
           </p>
