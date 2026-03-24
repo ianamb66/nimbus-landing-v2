@@ -158,6 +158,15 @@ const ASSETS = {
     '/assets/clientes/cliente-06.png',
     '/assets/clientes/cliente-07.png',
   ],
+  placeholders: {
+    servicios: {
+      marketing: '/assets/placeholders/servicios/marketing.png',
+      pr: '/assets/placeholders/servicios/pr.png',
+      eventos: '/assets/placeholders/servicios/eventos.png',
+      stands: '/assets/placeholders/servicios/stands.png',
+      medios: '/assets/placeholders/servicios/medios.png',
+    },
+  },
 };
 
 // --- COMPONENTES UI REUTILIZABLES ---
@@ -272,7 +281,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
               <ButtonPrimary onClick={() => setView('servicios')}>
                 Conocer Servicios <ArrowRight size={20} />
               </ButtonPrimary>
-              <ButtonOutline onClick={() => window.open('https://wa.me/1234567890', '_blank')}>
+              <ButtonOutline onClick={() => window.open('https://wa.me/5235239662', '_blank')}>
                 Contactar por WhatsApp
               </ButtonOutline>
             </div>
@@ -366,11 +375,11 @@ function Home({ setView }: { setView: (id: string) => void }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'Marketing Digital', img: ASSETS.fotos.marketing, delay: '' },
-              { name: 'Relaciones Públicas', img: ASSETS.fotos.pr, delay: 'delay-100' },
-              { name: 'Eventos', img: ASSETS.fotos.eventos, delay: 'delay-200' },
-              { name: 'Stands', img: ASSETS.fotos.stands, delay: 'delay-300' },
-              { name: 'Medios y Exteriores', img: ASSETS.fotos.medios, delay: 'delay-400' },
+              { name: 'Marketing Digital', img: ASSETS.fotos.marketing, ph: ASSETS.placeholders.servicios.marketing, delay: '' },
+              { name: 'Relaciones Públicas', img: ASSETS.fotos.pr, ph: ASSETS.placeholders.servicios.pr, delay: 'delay-100' },
+              { name: 'Eventos', img: ASSETS.fotos.eventos, ph: ASSETS.placeholders.servicios.eventos, delay: 'delay-200' },
+              { name: 'Stands', img: ASSETS.fotos.stands, ph: ASSETS.placeholders.servicios.stands, delay: 'delay-300' },
+              { name: 'Medios y Exteriores', img: ASSETS.fotos.medios, ph: ASSETS.placeholders.servicios.medios, delay: 'delay-400' },
             ].map((service) => (
               <div
                 key={service.name}
@@ -385,7 +394,14 @@ function Home({ setView }: { setView: (id: string) => void }) {
                   className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-50 group-hover:opacity-30 transition-opacity group-hover:scale-105 duration-700"
                 />
 
-                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black via-black/80 to-transparent z-20">
+                {/* Placeholder por servicio (PNG reemplazable) */}
+                <img
+                  src={service.ph}
+                  alt=""
+                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-25 mix-blend-screen group-hover:opacity-35 transition-opacity z-20"
+                />
+
+                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black via-black/80 to-transparent z-30">
                   <h3 className="text-3xl font-stencil text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {service.name}
                   </h3>
@@ -462,7 +478,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
           <div className="flex flex-col sm:flex-row gap-6 justify-center reveal-up delay-200">
             <ButtonOutline className="bg-black border-black hover:bg-transparent hover:border-black hover:text-black">Contactar Ahora</ButtonOutline>
             <button
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+              onClick={() => window.open('https://wa.me/5235239662', '_blank')}
               className="flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-white hover:text-black transition-colors underline decoration-2 underline-offset-8"
               type="button"
             >
@@ -484,6 +500,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       items: ['Estrategia digital', 'Gestión de redes sociales', 'Producción de contenido', 'Publicidad digital', 'Analítica y optimización'],
       mancha: ASSETS.manchas.roja1,
       foto: ASSETS.fotos.marketing,
+      placeholder: ASSETS.placeholders.servicios.marketing,
     },
     {
       id: 'pr',
@@ -492,6 +509,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       items: ['Relación con medios', 'Gestión de entrevistas', 'Construcción de narrativa', 'Manejo de reputación', 'Posicionamiento de voceros'],
       mancha: ASSETS.manchas.negra1,
       foto: ASSETS.fotos.pr,
+      placeholder: ASSETS.placeholders.servicios.pr,
     },
     {
       id: 'eventos',
@@ -500,6 +518,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       items: ['Conceptualización', 'Producción integral', 'Eventos corporativos', 'Activaciones de marca', 'Eventos institucionales'],
       mancha: ASSETS.manchas.azul1,
       foto: ASSETS.fotos.eventos,
+      placeholder: ASSETS.placeholders.servicios.eventos,
     },
     {
       id: 'stands',
@@ -508,6 +527,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       items: ['Diseño conceptual', 'Producción', 'Montaje', 'Experiencias interactivas', 'Ferias y exposiciones'],
       mancha: ASSETS.manchas.roja2,
       foto: ASSETS.fotos.stands,
+      placeholder: ASSETS.placeholders.servicios.stands,
     },
     {
       id: 'medios',
@@ -516,6 +536,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       items: ['Planeación de medios', 'Compra de medios', 'Publicidad exterior', 'Campañas OOH', 'Medios digitales'],
       mancha: ASSETS.manchas.negra2,
       foto: ASSETS.fotos.medios,
+      placeholder: ASSETS.placeholders.servicios.medios,
     },
   ];
 
@@ -542,6 +563,14 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={srv.foto} alt={srv.title} className="absolute inset-0 w-full h-full object-cover img-grunge opacity-50" />
                 <div className="absolute inset-0 bg-halftone opacity-40"></div>
+
+                {/* Placeholder por servicio (PNG reemplazable) */}
+                <img
+                  src={srv.placeholder}
+                  alt=""
+                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-20 mix-blend-screen"
+                />
+
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={srv.mancha} alt="" className="absolute w-3/4 opacity-80 mix-blend-screen" />
                 <h3 className="relative z-10 text-5xl md:text-7xl font-stencil text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-40 transform -rotate-6 whitespace-nowrap">
@@ -636,9 +665,11 @@ function SectionPlaceholder({
       />
       <div className="relative z-10 text-center px-6 w-full max-w-6xl mx-auto">
         <h1 className="text-6xl md:text-8xl font-stencil text-[color:var(--nimbus-red)] mb-6 uppercase tracking-wider reveal-down">{title}</h1>
-        <p className="text-2xl text-gray-300 max-w-2xl mx-auto mb-10 reveal-up delay-100">
-          Sección en desarrollo. Explorando la estética visual y narrativa de Nimbus para el área de {title.toLowerCase()}.
-        </p>
+        {viewName !== 'sectores' && (
+          <p className="text-2xl text-gray-300 max-w-2xl mx-auto mb-10 reveal-up delay-100">
+            Sección en desarrollo. Explorando la estética visual y narrativa de Nimbus para el área de {title.toLowerCase()}.
+          </p>
+        )}
         <div className="w-24 h-1 bg-[color:var(--nimbus-red)] mx-auto reveal-scale delay-200"></div>
 
         {viewName === 'experiencia' && (
@@ -745,7 +776,7 @@ function Contacto() {
                 <li className="flex items-center gap-4 text-lg hover:translate-x-2 transition-transform">
                   <MessageCircle className="text-[color:var(--nimbus-red)]" />
                   <a
-                    href="https://wa.me/1234567890"
+                    href="https://wa.me/5235239662"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-[color:var(--nimbus-red)] transition-colors"
@@ -991,7 +1022,7 @@ export default function Page() {
       </footer>
 
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/5235239662"
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg shadow-black/50 hover:scale-110 hover:bg-[#1ebe57] transition-all flex items-center justify-center group"
