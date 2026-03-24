@@ -736,7 +736,7 @@ function SectionPlaceholder({
           </p>
         )}
 
-        {viewName !== 'sectores' && viewName !== 'nosotros' && (
+        {viewName !== 'nosotros' && (
           <p className="text-2xl text-gray-300 max-w-2xl mx-auto mb-10 reveal-up delay-100">
             Sección en desarrollo. Explorando la estética visual y narrativa de Nimbus para el área de {title.toLowerCase()}.
           </p>
@@ -802,21 +802,6 @@ function SectionPlaceholder({
                   Ver Caso <ArrowRight size={14} />
                 </span>
               </button>
-            ))}
-          </div>
-        )}
-
-        {viewName === 'sectores' && (
-          <div className="mt-16 flex flex-wrap justify-center gap-4">
-            {['Corporativo', 'Tecnología', 'Gobierno', 'Entretenimiento', 'Exposiciones'].map((sector) => (
-              <div
-                key={sector}
-                className="px-8 py-4 bg-black border-2 border-gray-700 text-xl font-stencil hover:bg-[color:var(--nimbus-red)] hover:border-[color:var(--nimbus-red)] transition-colors cursor-pointer flex items-center gap-2 reveal-scale"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ASSETS.papeles.pedazo1} alt="" className="w-6 h-6 object-contain opacity-50 rotate-45" loading="lazy" decoding="async" />
-                {sector}
-              </div>
             ))}
           </div>
         )}
@@ -1045,7 +1030,6 @@ export default function Page() {
     { id: 'servicios', label: 'Servicios' },
     { id: 'metodologia', label: 'Metodología' },
     { id: 'experiencia', label: 'Experiencia' },
-    { id: 'sectores', label: 'Sectores' },
     { id: 'nosotros', label: 'Nosotros' },
     { id: 'contacto', label: 'Contacto' },
   ];
@@ -1067,10 +1051,7 @@ export default function Page() {
       case 'contacto':
         return <Contacto />;
       case 'experiencia':
-        return <SectionPlaceholder title="Experiencia" viewName="experiencia" onOpenProject={setOpenProject} />;
-      case 'sectores':
-        return <SectionPlaceholder title="Sectores" bgClass="bg-[color:var(--nimbus-blue)]" viewName="sectores" />;
-      case 'nosotros':
+        return <SectionPlaceholder title="Experiencia" viewName="experiencia" onOpenProject={setOpenProject} />;      case 'nosotros':
         return <SectionPlaceholder title="Nosotros" viewName="nosotros" />;
       default:
         return <Home setView={handleNav} />;
