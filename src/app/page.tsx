@@ -583,21 +583,29 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                 <img
                   src={srv.foto}
                   alt={srv.title}
-                  className="absolute inset-0 w-full h-full object-cover img-grunge opacity-70 md:opacity-50"
+                  className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-90 md:opacity-55 mix-blend-normal"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-halftone opacity-25 md:opacity-40"></div>
+                <div className="absolute inset-0 bg-halftone opacity-15 md:opacity-30"></div>
 
                 {/* Placeholder por servicio (PNG reemplazable) */}
                 <img
                   src={srv.placeholder}
                   alt=""
-                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-20 mix-blend-screen"
+                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-10 md:opacity-20 mix-blend-screen"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={srv.mancha} alt="" className="absolute w-3/4 opacity-80 mix-blend-screen" />
+                <img
+                  src={srv.mancha}
+                  alt=""
+                  className="absolute w-3/4 opacity-55 md:opacity-80 mix-blend-screen"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <h3 className="relative z-10 px-4 text-center text-3xl sm:text-5xl md:text-7xl font-stencil text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-50 transform -rotate-6 whitespace-normal leading-tight max-w-[95%]">
                   {srv.title}
                 </h3>
