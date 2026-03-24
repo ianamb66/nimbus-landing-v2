@@ -490,7 +490,12 @@ function Home({ setView }: { setView: (id: string) => void }) {
             CONSTRUYAMOS TU PRÓXIMA ESTRATEGIA.
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center reveal-up delay-200">
-            <ButtonOutline className="bg-black border-black hover:bg-transparent hover:border-black hover:text-black">Contactar Ahora</ButtonOutline>
+            <ButtonOutline
+              className="bg-black border-black hover:bg-transparent hover:border-black hover:text-black"
+              onClick={() => setView('contacto')}
+            >
+              Contactar Ahora
+            </ButtonOutline>
             <button
               onClick={() => window.open('https://wa.me/525535239662', '_blank')}
               className="flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-white hover:text-black transition-colors underline decoration-2 underline-offset-8"
