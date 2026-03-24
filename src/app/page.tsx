@@ -750,7 +750,7 @@ function Contacto() {
 
     try {
       const payload = { name, company, contact, message, source: 'contacto' };
-      const res = await fetch('/api/sheets-lead', {
+      const res = await fetch('/api/email-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
