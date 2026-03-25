@@ -480,12 +480,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
                   className="service-img absolute inset-0 w-full h-full object-cover img-grunge-light group-hover:scale-105 duration-700"
                 />
 
-                {/* Placeholder por servicio (PNG reemplazable) */}
-                <img
-                  src={service.ph}
-                  alt=""
-                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-25 mix-blend-screen group-hover:opacity-35 transition-opacity z-20"
-                />
+                {/* Placeholder deshabilitado: solo usar si faltan imágenes reales */}
 
                 <div className="service-gradient absolute inset-0 flex flex-col justify-end p-8 z-30">
                   <h3 className="text-4xl md:text-5xl font-stencil text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -659,14 +654,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                 />
                 <div className="service-detail-halftone absolute inset-0 bg-halftone"></div>
 
-                {/* Placeholder por servicio (PNG reemplazable) */}
-                <img
-                  src={srv.placeholder}
-                  alt=""
-                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-10 md:opacity-20 mix-blend-screen"
-                  loading="lazy"
-                  decoding="async"
-                />
+                {/* Placeholder deshabilitado (evita doble texto/marco en SVG). */}
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
