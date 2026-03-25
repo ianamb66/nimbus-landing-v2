@@ -105,6 +105,24 @@ const globalStyles = `
     filter: none;
   }
 
+  /* Detalle de servicio (página Servicios): mismo comportamiento que cards (tenue -> full color en hover) */
+  .service-detail-card .service-detail-img {
+    filter: grayscale(100%) contrast(120%) brightness(70%);
+    opacity: 0.55;
+    transition: filter 250ms ease, opacity 250ms ease, transform 700ms ease;
+  }
+  .service-detail-card:hover .service-detail-img {
+    filter: none;
+    opacity: 1;
+  }
+  .service-detail-card .service-detail-halftone {
+    opacity: 0.20;
+    transition: opacity 250ms ease;
+  }
+  .service-detail-card:hover .service-detail-halftone {
+    opacity: 0.08;
+  }
+
   .hover-glitch:hover {
     animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
     color: var(--nimbus-red);
@@ -627,7 +645,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
               className={`flex flex-col ${index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center relative`}
             >
               <div
-                className={`w-full md:w-1/2 relative min-h-[400px] bg-[color:var(--nimbus-blue)] flex items-center justify-center overflow-hidden border border-gray-800 ${
+                className={`service-detail-card w-full md:w-1/2 relative min-h-[400px] bg-[color:var(--nimbus-blue)] flex items-center justify-center overflow-hidden border border-gray-800 ${
                   index % 2 !== 0 ? 'reveal-right' : 'reveal-left'
                 }`}
               >
@@ -635,11 +653,11 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                 <img
                   src={srv.foto}
                   alt={srv.title}
-                  className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-90 md:opacity-55 mix-blend-normal"
+                  className="service-detail-img absolute inset-0 w-full h-full object-cover img-grunge-light mix-blend-normal"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-halftone opacity-15 md:opacity-30"></div>
+                <div className="service-detail-halftone absolute inset-0 bg-halftone"></div>
 
                 {/* Placeholder por servicio (PNG reemplazable) */}
                 <img
