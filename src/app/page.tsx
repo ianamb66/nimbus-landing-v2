@@ -219,11 +219,11 @@ const ASSETS = {
   ],
   placeholders: {
     servicios: {
-      marketing: '/assets/placeholders/servicios/marketing.png',
-      pr: '/assets/placeholders/servicios/pr.png',
-      eventos: '/assets/placeholders/servicios/eventos.png',
-      stands: '/assets/placeholders/servicios/stands.png',
-      medios: '/assets/placeholders/servicios/medios.png',
+      marketing: '/assets/placeholders/servicios/marketing.svg',
+      pr: '/assets/placeholders/servicios/pr.svg',
+      eventos: '/assets/placeholders/servicios/eventos.svg',
+      stands: '/assets/placeholders/servicios/stands.svg',
+      medios: '/assets/placeholders/servicios/medios.svg',
     },
   },
 };
