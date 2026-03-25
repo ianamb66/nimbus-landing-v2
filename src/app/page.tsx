@@ -59,6 +59,11 @@ const globalStyles = `
     filter: none;
   }
 
+  /* En tarjetas de servicios, al hover también queremos verla a color (evitar que se apague/negree) */
+  .service-card:hover .img-grunge-light {
+    filter: none;
+  }
+
   .hover-glitch:hover {
     animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
     color: var(--nimbus-red);
@@ -405,7 +410,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
             ].map((service) => (
               <div
                 key={service.name}
-                className={`relative h-80 bg-black group overflow-hidden cursor-pointer border border-gray-800 reveal-scale ${service.delay}`}
+                className={`service-card relative h-80 bg-black group overflow-hidden cursor-pointer border border-gray-800 reveal-scale ${service.delay}`}
                 onClick={() => setView('servicios')}
               >
                 <div className="absolute inset-0 bg-halftone opacity-20 group-hover:opacity-40 transition-opacity z-10"></div>
@@ -413,7 +418,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
                 <img
                   src={service.img}
                   alt={service.name}
-                  className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-50 group-hover:opacity-30 transition-opacity group-hover:scale-105 duration-700"
+                  className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-60 group-hover:opacity-70 transition-opacity group-hover:scale-105 duration-700"
                 />
 
                 {/* Placeholder por servicio (PNG reemplazable) */}
