@@ -161,16 +161,49 @@ const globalStyles = `
     animation-play-state: paused;
   }
 
-  /* Animaciones de Scroll (Scroll Reveal) */
-  .reveal-up { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-down { opacity: 0; transform: translateY(-60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-scale { opacity: 0; transform: scale(0.85); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-  
+  /* Animaciones de Scroll (Scroll Reveal)
+     Nota: evitamos transition: all para prevenir efectos bruscos/layout-jank.
+  */
+  .reveal-up,
+  .reveal-down,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition-property: transform, opacity;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-up { transform: translateY(32px); }
+  .reveal-down { transform: translateY(-32px); }
+  .reveal-left { transform: translateX(-32px); }
+  .reveal-right { transform: translateX(32px); }
+  .reveal-scale { transform: scale(0.92); }
+
   .reveal-active {
     opacity: 1 !important;
-    transform: translate(0) scale(1) !important;
+    transform: translate3d(0,0,0) scale(1) !important;
+  }
+
+  /* Respeta preferencias de accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-up,
+    .reveal-down,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+    .hover-glitch:hover {
+      animation: none !important;
+    }
+    .carousel-track {
+      animation: none !important;
+    }
   }
 
   /* Retrasos escalonados */
