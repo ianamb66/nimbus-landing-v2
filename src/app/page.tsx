@@ -60,7 +60,9 @@ const globalStyles = `
     opacity: 0.35;
     transition: filter 250ms ease, opacity 250ms ease, transform 700ms ease;
   }
-  .service-card:hover .service-img {
+  .service-card:hover .service-img,
+  .service-card:focus-within .service-img,
+  .service-card:active .service-img {
     filter: none;
     opacity: 1;
   }
@@ -70,7 +72,9 @@ const globalStyles = `
     opacity: 0.16;
     transition: opacity 250ms ease;
   }
-  .service-card:hover .service-halftone {
+  .service-card:hover .service-halftone,
+  .service-card:focus-within .service-halftone,
+  .service-card:active .service-halftone {
     opacity: 0.04;
   }
   .service-card .service-gradient {
@@ -84,8 +88,10 @@ const globalStyles = `
     );
     transition: background 250ms ease;
   }
-  .service-card:hover .service-gradient {
-    /* En hover: mucho más claro para que la imagen se vea full-color */
+  .service-card:hover .service-gradient,
+  .service-card:focus-within .service-gradient,
+  .service-card:active .service-gradient {
+    /* En hover/touch: mucho más claro para que la imagen se vea full-color */
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.55) 0%,
@@ -111,7 +117,9 @@ const globalStyles = `
     opacity: 0.55;
     transition: filter 250ms ease, opacity 250ms ease, transform 700ms ease;
   }
-  .service-detail-card:hover .service-detail-img {
+  .service-detail-card:hover .service-detail-img,
+  .service-detail-card:focus-within .service-detail-img,
+  .service-detail-card:active .service-detail-img {
     filter: none;
     opacity: 1;
   }
@@ -119,7 +127,9 @@ const globalStyles = `
     opacity: 0.20;
     transition: opacity 250ms ease;
   }
-  .service-detail-card:hover .service-detail-halftone {
+  .service-detail-card:hover .service-detail-halftone,
+  .service-detail-card:focus-within .service-detail-halftone,
+  .service-detail-card:active .service-detail-halftone {
     opacity: 0.08;
   }
 
