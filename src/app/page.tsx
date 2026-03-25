@@ -1338,8 +1338,16 @@ export default function Page() {
               <h4 className="font-stencil text-white text-xl mb-4">CONTACTO</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>CDMX, México</li>
-                <li>contacto@nimbus.agency</li>
-                <li>+52 123 456 7890</li>
+                <li>
+                  <a href="mailto:contacto@nimbus.mx" className="hover:text-[color:var(--nimbus-red)] transition-colors">
+                    contacto@nimbus.mx
+                  </a>
+                </li>
+                <li>
+                  <a href="https://wa.me/525535239662" target="_blank" rel="noreferrer" className="hover:text-[color:var(--nimbus-red)] transition-colors">
+                    +52 55 3523 9662
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
