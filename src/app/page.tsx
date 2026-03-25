@@ -54,6 +54,33 @@ const globalStyles = `
     transition: filter 250ms ease, opacity 250ms ease;
   }
 
+  /* Servicios: por default la imagen se ve tenue (pero visible). En hover: full color y más clara */
+  .service-card .service-img {
+    filter: grayscale(100%) contrast(120%) brightness(70%);
+    opacity: 0.35;
+    transition: filter 250ms ease, opacity 250ms ease, transform 700ms ease;
+  }
+  .service-card:hover .service-img {
+    filter: none;
+    opacity: 0.95;
+  }
+
+  /* Overlays de servicios: en hover bajamos el oscurecimiento para ver la imagen */
+  .service-card .service-halftone {
+    opacity: 0.20;
+    transition: opacity 250ms ease;
+  }
+  .service-card:hover .service-halftone {
+    opacity: 0.08;
+  }
+  .service-card .service-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.55) 45%, rgba(0,0,0,0));
+    transition: background 250ms ease;
+  }
+  .service-card:hover .service-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.25) 45%, rgba(0,0,0,0));
+  }
+
   /* En tarjetas de experiencia, al hover queremos ver la imagen a color, sin filtros */
   .case-card:hover .img-grunge-light {
     filter: none;
@@ -413,12 +440,12 @@ function Home({ setView }: { setView: (id: string) => void }) {
                 className={`service-card relative h-80 bg-black group overflow-hidden cursor-pointer border border-gray-800 reveal-scale ${service.delay}`}
                 onClick={() => setView('servicios')}
               >
-                <div className="absolute inset-0 bg-halftone opacity-20 group-hover:opacity-40 transition-opacity z-10"></div>
+                <div className="service-halftone absolute inset-0 bg-halftone z-10"></div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={service.img}
                   alt={service.name}
-                  className="absolute inset-0 w-full h-full object-cover img-grunge-light opacity-60 group-hover:opacity-70 transition-opacity group-hover:scale-105 duration-700"
+                  className="service-img absolute inset-0 w-full h-full object-cover img-grunge-light group-hover:scale-105 duration-700"
                 />
 
                 {/* Placeholder por servicio (PNG reemplazable) */}
@@ -428,7 +455,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
                   className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-25 mix-blend-screen group-hover:opacity-35 transition-opacity z-20"
                 />
 
-                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black via-black/80 to-transparent z-30">
+                <div className="service-gradient absolute inset-0 flex flex-col justify-end p-8 z-30">
                   <h3 className="text-3xl font-stencil text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {service.name}
                   </h3>
