@@ -62,23 +62,37 @@ const globalStyles = `
   }
   .service-card:hover .service-img {
     filter: none;
-    opacity: 0.95;
+    opacity: 1;
   }
 
   /* Overlays de servicios: en hover bajamos el oscurecimiento para ver la imagen */
   .service-card .service-halftone {
-    opacity: 0.20;
+    opacity: 0.16;
     transition: opacity 250ms ease;
   }
   .service-card:hover .service-halftone {
-    opacity: 0.08;
+    opacity: 0.04;
   }
   .service-card .service-gradient {
-    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.55) 45%, rgba(0,0,0,0));
+    /* Oscurece principalmente abajo para que el texto sea legible, sin “matar” la foto arriba */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.90) 0%,
+      rgba(0, 0, 0, 0.55) 35%,
+      rgba(0, 0, 0, 0.15) 65%,
+      rgba(0, 0, 0, 0) 100%
+    );
     transition: background 250ms ease;
   }
   .service-card:hover .service-gradient {
-    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.25) 45%, rgba(0,0,0,0));
+    /* En hover: mucho más claro para que la imagen se vea full-color */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.25) 35%,
+      rgba(0, 0, 0, 0.05) 65%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   /* En tarjetas de experiencia, al hover queremos ver la imagen a color, sin filtros */
@@ -456,7 +470,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
                 />
 
                 <div className="service-gradient absolute inset-0 flex flex-col justify-end p-8 z-30">
-                  <h3 className="text-3xl font-stencil text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-4xl md:text-5xl font-stencil text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {service.name}
                   </h3>
                   <span className="text-[color:var(--nimbus-red)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
@@ -474,7 +488,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
             src={ASSETS.papeles.bordeSuperior}
             alt=""
             className="w-full h-12 md:h-24 object-cover object-top opacity-100"
-            style={{ filter: 'brightness(0)' }}
+            style={{ filter: 'brightness(0.25)' }}
           />
         </div>
       </section>
