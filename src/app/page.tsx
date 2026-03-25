@@ -538,15 +538,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
           </div>
         </div>
 
-        <div className="absolute bottom-[-2px] left-0 w-full z-20 pointer-events-none rotate-180">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={ASSETS.papeles.bordeSuperior}
-            alt=""
-            className="w-full h-12 md:h-24 object-cover object-top opacity-100"
-            style={{ filter: 'brightness(0.25)' }}
-          />
-        </div>
+        {/* Divider removido: generaba una raya gris/oscura debajo del grid en algunos viewports */}
       </section>
 
       <section className="py-24 bg-black relative">
