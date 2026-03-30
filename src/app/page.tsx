@@ -507,8 +507,14 @@ function Home({ setView }: { setView: (id: string) => void }) {
               { name: 'Marketing Digital', img: ASSETS.fotos.marketing, ph: ASSETS.placeholders.servicios.marketing, delay: '' },
               { name: 'Relaciones Públicas', img: ASSETS.fotos.pr, ph: ASSETS.placeholders.servicios.pr, delay: 'delay-100' },
               { name: 'Eventos', img: ASSETS.fotos.eventos, ph: ASSETS.placeholders.servicios.eventos, delay: 'delay-200' },
-              { name: 'Stands', img: ASSETS.fotos.stands, ph: ASSETS.placeholders.servicios.stands, delay: 'delay-300' },
-              { name: 'Medios y Exteriores', img: ASSETS.fotos.medios, ph: ASSETS.placeholders.servicios.medios, delay: 'delay-400' },
+              {
+                name: 'Sports Marketing & Patrocinios',
+                img: ASSETS.fotos.eventos,
+                ph: ASSETS.placeholders.servicios.eventos,
+                delay: 'delay-300',
+              },
+              { name: 'Stands', img: ASSETS.fotos.stands, ph: ASSETS.placeholders.servicios.stands, delay: 'delay-400' },
+              { name: 'Medios y Exteriores', img: ASSETS.fotos.medios, ph: ASSETS.placeholders.servicios.medios, delay: 'delay-500' },
             ].map((service) => (
               <div
                 key={service.name}
@@ -636,6 +642,22 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
       intro: 'Producción de experiencias que generan impacto y posicionamiento.',
       items: ['Conceptualización', 'Producción integral', 'Eventos corporativos', 'Activaciones de marca', 'Eventos institucionales'],
       mancha: ASSETS.manchas.azul1,
+      foto: ASSETS.fotos.eventos,
+      placeholder: ASSETS.placeholders.servicios.eventos,
+    },
+    {
+      id: 'sports',
+      title: 'SPORTS MARKETING & PATROCINIOS',
+      intro: 'Diseño de estrategia, activaciones y cierre de patrocinios para eventos deportivos y marcas.',
+      items: [
+        'Paquetes de patrocinio (regional y nacional)',
+        'Gestión de alianzas y negociación',
+        'Activaciones en sitio + producción',
+        'Contenido y PR para amplificación',
+        'Reporte de KPIs y aprendizajes',
+        'Casos: Carrera Cruz Roja, Carrera Graneodin, El Gran Fondo',
+      ],
+      mancha: ASSETS.manchas.roja3,
       foto: ASSETS.fotos.eventos,
       placeholder: ASSETS.placeholders.servicios.eventos,
     },
