@@ -724,9 +724,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
                   loading="lazy"
                   decoding="async"
                 />
-                <h3 className="relative z-10 px-4 text-center text-3xl sm:text-5xl md:text-7xl font-stencil text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-50 transform -rotate-6 whitespace-normal leading-tight max-w-[95%]">
-                  {srv.title}
-                </h3>
+                {/* overlay title removed (requested): keeps image clean */}
                 <div className="absolute top-4 left-4 font-stencil text-[color:var(--nimbus-red)] text-2xl px-2 py-1 bg-black/50 backdrop-blur-sm">
                   0{index + 1}
                 </div>
