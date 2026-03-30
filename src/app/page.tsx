@@ -230,6 +230,9 @@ const ASSETS = {
   logos: {
     principal: '/assets/logos/nimbus-logo.webp',
   },
+  fotosExtra: {
+    sportsMarketing: '/assets/fotos/sports-marketing.jpg',
+  },
   manchas: {
     roja1: '/assets/manchas-grunge/mancha-roja-01.png',
     roja2: '/assets/manchas-grunge/mancha-roja-02.png',
@@ -509,7 +512,7 @@ function Home({ setView }: { setView: (id: string) => void }) {
               { name: 'Eventos', img: ASSETS.fotos.eventos, ph: ASSETS.placeholders.servicios.eventos, delay: 'delay-200' },
               {
                 name: 'Sports Marketing & Patrocinios',
-                img: ASSETS.fotos.eventos,
+                img: ASSETS.fotosExtra.sportsMarketing,
                 ph: ASSETS.placeholders.servicios.eventos,
                 delay: 'delay-300',
               },
@@ -658,7 +661,7 @@ function Servicios({ setView }: { setView: (id: string) => void }) {
         'Casos: Carrera Cruz Roja, Carrera Graneodin, El Gran Fondo',
       ],
       mancha: ASSETS.manchas.roja3,
-      foto: ASSETS.fotos.eventos,
+      foto: ASSETS.fotosExtra.sportsMarketing,
       placeholder: ASSETS.placeholders.servicios.eventos,
     },
     {
